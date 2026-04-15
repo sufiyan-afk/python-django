@@ -29,4 +29,3 @@ if a == list:
 else:
     print("not palindrome")
 """
-

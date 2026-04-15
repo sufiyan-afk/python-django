@@ -49,7 +49,6 @@
 # d = {"name":"Sufiyan","age":24,"email":"sufiyan@gmail.com"}
 # # with open("data.json",'w') as f:
 # #     json.dump(d,f)
-
 # with open("data.json",'r') as F:
 #     json.dump(F,d)
 
