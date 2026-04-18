@@ -42,7 +42,7 @@ Self - self ek parameter hota hai jo current object ko refer karta hai.
         types of inheritance :
         1.single inheritance -- parent to child
         2. multiple inheritance -- one parent two child
-        3. multiple inheritance -- parent to child to grandchild
+        3. multiple  inheritance -- parent to child to grandchild
         4. hybrid inheritance -- combination of all of this
 """
 
