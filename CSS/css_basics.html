@@ -1,0 +1,138 @@
+<!--  levels of CSS -->
+
+cascading style sheet :
+        it is used to describe the style of a document. 
+
+Level 1: Basics
+        basic syntax:
+        selector e.g-  h1{
+            color(property):red(value):
+        }
+
+
+
+                    A. including style:
+
+        1. inline  : it is generally used in the body tag of html
+        <h1 style="color:red">sufiyan</h1>
+
+        2.style tag:
+        it is used inside the head tag of html
+
+        <style>
+            h1 {
+            color:red;
+            }
+        </style>
+
+
+
+        3 . external stylesheet:
+            writing css in a seperate document & linking it with HTML file.
+
+
+
+
+                    
+            B . color property   
+         used to set the color of foreground(means layout of the website)
+
+    foreground color property -- > text , link , buttons etc
+
+        color: red;
+        color: pink;
+        color: blue;
+
+    background color property -- > 
+
+    background-color:red
+    background-color:blue
+   
+    
+
+            C. COLOR SYSTEMS
+
+
+go to color pick.google and check the RGB values or hex code for the color tone 
+  
+1. RGB          2.HEX
+ 
+
+
+
+    1. RGB : R - red , G - green , B - blue
+
+    three primary colors of CSS - red , blue , green
+    we have to give range in between 0-255 
+
+
+    mixing of three primary colors
+    red + blue -- > pink
+    blue + green -- > fent blue
+    red + green -- > yellow
+
+    red + blue + green -- > white
+
+    syntax:
+
+    color: rgb()
+
+
+
+    2. hex (hexadecimal) hex means 6  dec means 10 
+it is a number system  in which we have a range of 0 - 15 numbers
+
+                                    R              G            B
+we have to give rang in between  00 - ff    ,   00 - ff   ,   00 - ff
+ 
+
+syntax:
+
+color:#ff0000; -- whole red
+color:#00ff00; -- whole green
+color:#0000ff; -- whole  blue
+
+#ffff00 -- yellow
+
+
+
+
+
+
+            -- >  selectors in CSS   < --
+
+1. universal selector - *{}  -- changes the color of whole document
+
+2. Element Selector   - h1{}  -- normal styling changes the color of element which we have define
+
+3. id selector        - #myid we can give color to individual property through giving id
+
+4. class selector     - .myclass{}  for setting same id to multiple elements
+-->
+
+
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSS Level 1</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <h1 style="color: red;">Hello from Sufiyan</h1> inline tag 
+    <h1 id="headingoneidselector">heading one for id selector </h1>
+    <h1 id="heading two "></h1>
+    <h1 class="myclass">my class selector</h1>
+    h
+
+    <p>this is a simple paragraph tag</p>
+    <button>Click me!</button>
+    <select name="
+    " id=""></select>
+</body>
+</html> 
+ 

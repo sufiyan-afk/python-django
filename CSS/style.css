@@ -1,0 +1,35 @@
+/* h1{
+    color: red;
+}
+
+p{
+    color: blue;
+}
+
+button{
+    color:brown;
+    background-color:beige;
+}
+
+body{
+    background-color: burlywood;
+    background-color: rgb(0, 255,0);
+    background-color: rgb(255, 0 , 0);
+    background-color: rgb(0, 0, 255);
+
+    background-color: rgb(255, 225, 0);
+
+    background-color: #4d4e6f;
+} */
+
+/* 1. universal selector */
+
+.heading{
+    color: red;
+}
+
+button{
+    background-color: green;
+}
+
+

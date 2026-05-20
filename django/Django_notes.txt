@@ -1,0 +1,205 @@
+📘 Django CRUD App — Class Notes (MVT Pattern)
+
+🗂️ Page 1 — Project Setup (Steps 1–6)
+Topic: Basic CRUD operation app using Django
+
+Pehle existing directory mein jaao agar already bani hui hai
+
+
+
+✅ Step 1 — Activate Virtual Environment
+activate venv (if already made)
+if not :
+py -m venv <name>
+for activating
+<name>/Scripts/activate
+
+✅ Step 2 — Create Project
+bashpy -m django startproject crudoperation
+
+Project ka naam: crudoperation
+
+
+✅ Step 3 — Project Folder Mein Jaao
+bashcd crudoperation
+
+✅ Step 4 — App Banao
+bashpy -m django startapp myapp
+
+✅ Step 5 — myapp ke Andar Setup
+Ek folder aur ek file banao:
+
+📁 Folder: templates/ → iske andar index.html banao
+📄 File: urls.py banao
+
+
+✅ Step 6 — settings.py Mein App Register Karo
+Project ke settings.py mein jaao aur INSTALLED_APPS mein app ka naam add karo:
+pythonINSTALLED_APPS = [
+    ...
+    'myapp',
+]
+
+✅ Step 6b — Project urls.py Mein Path Do
+pythonpath("", include('myapp.urls'))
+
+"" = blank path → matlab jab bhi blank page open ho, use myapp.urls pe bhej do
+
+
+🗂️ Page 2 — URL → View Connection (Steps 7–8)
+
+✅ Step 7 — myapp/urls.py Likhna
+
+Ab myapp flow decide karega ki aage kya hoga
+
+python# myapp/urls.py
+
+from django.urls import path
+from django.views import *   # saare functions/logic views me rahenge
+
+urlpatterns = [
+    path("", index, name="index")
+    # Jab blank mile → views mein se "index" naam ki function call karna hai
+]
+
+✅ Step 8 — myapp/views.py Mein Functions Banao
+python# myapp/views.py
+
+from django.shortcuts import render
+
+def index(request):
+    return render(request, "index.html")
+
+📝 Summary (Flow Samajhna):
+1. Project run hone ke baad → project urls.py me gaya (Step 6b)
+2. Wahan se → myapp.urls pe bheja
+3. myapp/urls.py pe gaya → blank path mila → "index" naam ki function call ki (Step 7)
+4. Wahan se → views.py me gaya → path blank milne ke baad → index.html pe bheja (render)
+
+🗂️ Page 3 — Model Banana + Admin Setup (Step 9)
+
+✅ Step 9 — models.py Mein Model Banao
+python# myapp/models.py
+
+from django.db import models
+
+class Student(models.Model):
+    name  = models.CharField(max_length=80)
+    email = models.CharField(max_length=50)
+    age   = models.IntegerField()
+
+✅ Admin Mein Register Karo
+python# myapp/admin.py
+
+from django.contrib.admin import site
+from myapp.models import Student
+
+admin.site.register(Student)
+
+✅ Migrations Chalao
+bashpy manage.py makemigrations
+py manage.py migrate
+
+✅ Superuser Banao
+bashpy manage.py createsuperuser
+
+Username, Password, Email fill karo
+
+Phir server run karo:
+bashpy manage.py runserver
+
+🗂️ Page 4 — HTML Form + POST Request
+
+✅ index.html Mein Registration Form Banao
+
+Blank page pe aaya → ab name, email, age provide karna hai → Bootstrap se basic form design karo
+
+POST method use karo:
+
+POST → ye data URL mein expose nahi karta (GET karta hai)
+
+html<form action="" method="post">
+
+✅ views.py Mein POST Handle Karo
+python# views.py
+
+def index(request):
+    if request.method == "POST":
+        # POST se data aaya to views me ek function banao
+        return render(request, "index.html")
+
+✅ myapp/urls.py Update Karo
+pythonurlpatterns = [
+    path("reg/", index, name="reg")
+]
+
+Jab bhi name index ko batana padega ki form submit hone ke baad, ty reg decide karega data
+
+html<form action="{% url 'reg' %}" method="post">
+
+Ab jaise hi user form submit karega → form.action = us URL par jayega → reg naam ke path par
+
+
+🗂️ Page 5 — CSRF Token + Data Fetch
+
+✅ CSRF Token Lagao
+Security error se bachne ke liye form ke andar, action ke neeche:
+html<form action="{% url 'reg' %}" method="post">
+    {% csrf_token %}
+
+✅ Input Fields Ke naam Sahi Rakho
+html<input type="text"  name="name">
+<input type="email" name="email">
+<input type="text"  name="age">
+
+Jo bhi data index pe likha vo sab DB mein jaana hai
+
+
+✅ views.py Mein Data Extract Karo
+pythondef index(request):
+    if request.method == "POST":
+        data  = request.POST
+        name  = data.get("name")
+        email = data.get("email")
+        age   = data.get("age")
+        # Ab query run karne ke liye → next page continue
+
+🗂️ Page 6 — Database Mein Save Karo + Message Show Karo
+
+✅ views.py Mein Model Import Karo
+python# views.py
+
+from myapp.models import *
+
+✅ Student Object Create Karo (DB Mein Save)
+pythondef index(request):
+    if request.method == "POST":
+        data  = request.POST
+        name  = data.get("name")
+        email = data.get("email")
+        age   = data.get("age")
+
+        Student.objects.create(name=name, email=email, age=age)
+        # Ye execute hote hi data database me chala jayega
+
+        return render(request, "index.html", {"success": "Registration Successful"})
+
+✅ index.html Mein Message Show Karo
+Form tag ke upar yeh likho:
+html{{ msg }}
+Ya color ke saath:
+html<span>{{ msg }}</span>
+
+<!-- Ya Bootstrap color ke saath: -->
+<span class="text-success">{{ msg }}</span>
+
+🔄 Final Flow (Poora CRUD Create ka)
+User → index.html form fill karta hai
+     ↓
+Form submit → POST request → views.py ka index function
+     ↓
+request.POST se name, email, age nikalta hai
+     ↓
+Student.objects.create(...) → Database mein save
+     ↓
+Success message ke saath wapas index.html render

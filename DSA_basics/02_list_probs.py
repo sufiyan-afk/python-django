@@ -36,3 +36,4 @@ temp = lst[1]             # temp = lst[1]  --> 2
 lst[1] = lst [3]          #lst[1] = lst[3] --> 4
 lst[3] = temp             #lst[3] = temp   --> 2
 print(lst)         # final swap --> [5,4,3,2,1]
+ 

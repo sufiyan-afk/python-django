@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HTML Forms</title>
+    <style>
+    *{
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: Arial, sans-serif;
+    }
+
+    body{
+        min-height: 100vh;
+        background: linear-gradient(135deg, #ff4b5c, #ff6b81);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 20px;
+    }
+
+    .container{
+        width: 100%;
+        display: flex;
+        justify-content: center;
+    }
+
+    form{
+        width: 100%;
+        max-width: 450px;
+        background: white;
+        padding: 25px;
+        border-radius: 15px;
+        box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+    }
+
+    h1{
+        text-align: center;
+        margin-bottom: 20px;
+        color: white;
+        font-size: 32px;
+    }
+
+    form div{
+        margin-bottom: 16px;
+    }
+
+    label{
+        display: block;
+        margin-bottom: 6px;
+        font-weight: bold;
+        color: #333;
+    }
+
+    input,
+    select,
+    textarea{
+        width: 100%;
+        padding: 12px;
+        border: 1px solid #ccc;
+        border-radius: 8px;
+        outline: none;
+        font-size: 15px;
+        transition: 0.3s;
+    }
+
+    input:focus,
+    select:focus,
+    textarea:focus{
+        border-color: #ff4b5c;
+        box-shadow: 0 0 5px rgba(255,75,92,0.4);
+    }
+
+    textarea{
+        resize: none;
+    }
+
+    input[type="radio"],
+    input[type="checkbox"]{
+        width: auto;
+        margin-right: 6px;
+    }
+
+    p{
+        margin-bottom: 8px;
+        font-weight: bold;
+        color: #333;
+    }
+
+    button{
+        width: 100%;
+        padding: 12px;
+        border: none;
+        border-radius: 8px;
+        background: #ff4b5c;
+        color: white;
+        font-size: 17px;
+        cursor: pointer;
+        transition: 0.3s;
+    }
+
+    button:hover{
+        background: #e63946;
+    }
+
+    /* Mobile Responsive */
+    @media(max-width: 500px){
+        form{
+            padding: 18px;
+        }
+
+        h1{
+            font-size: 26px;
+        }
+
+        input,
+        select,
+        textarea{
+            font-size: 14px;
+            padding: 10px;
+        }
+
+        button{
+            font-size: 15px;
+        }
+    }
+</style>
+
+
+</head>
+<body>
+    <!-- <h1>Forms in HTML</h1> -->
+
+    <!-- form starts from here -->
+    <form action="/submit.php">
+
+    <!-- text input for name -->
+        <div>
+            <label for="name">name</label>
+            <input id="name" type="text" placeholder="enter name" required>
+        </div>
+
+
+        <!-- phone input  -->
+        <div>
+            <label for="phone">phone</label>
+            <input id="phone" type="tel"  placeholder="phone number" required>
+        </div>
+
+        <!-- email input  -->
+
+        <div>
+            <label for="Email">email</label>
+            <input id="id" type= "email" placeholder="enter your email id" required>
+        </div>
+
+        <!-- password input  -->
+
+        <div>
+            <label for="Password">Password</label>
+            <input id = "password" type="password" placeholder="enter password" required>
+        </div>
+
+        <!-- date input -->
+
+        <div>
+            <label for="dob">dob</label>
+            <input id = "dob" type="date" required>
+        </div>
+
+        <!-- dropdowm (select input) for gender -->
+
+        <div>
+            <label for="gender">gender</label>
+            <select id= "gender" required>
+                <option value=""disabled selected>selected Gender</option>
+                <option value="male">Male</option>
+                <option value="female">Female</option>
+                <option value="other">Other</option>
+            </select>
+        </div>
+
+
+            <!-- radio buttons for subsciption plan -->
+        <div>
+            <p>Subscription Plan</p>
+            <input id="Basic" type="radio" name="subscription" value = "Basic" >
+            <label for="Basic">Basic</label>
+
+            <input id="Premium" type="radio" name="subscription" value = "Premium">
+            <label for="Premium">Premium</label>
+
+            <input id="VIP" type="radio" name="subscription" value="VIP">
+            <label for="VIP">VIP</label>
+        </div>
+
+        <!-- checkbox for agreeing to terms -->
+
+        <div>
+            <input id="terms" type="checkbox" required>
+            <label for="terms">i agree to the terms and conditions</label>
+        </div>
+
+        <!-- textarea for comments -->
+
+        <div>
+            <label for="comments">comments</label>
+            <textarea id="comments" placeholder="enter your comments" rows="4"></textarea>
+        </div>      
+        
+        <!-- submit button -->
+
+        <div>
+            <button type="submit">Submit</button>
+        </div>
+
+    </form>
+<!-- form ends here -->
+
+</body>
+</html>

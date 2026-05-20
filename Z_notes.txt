@@ -1,0 +1,120 @@
+             a.  FILE HANDLING :
+        file handling is used to store data permanently in memory.
+
+operations in File:
+1. open a file 
+2. read and write
+3. close the file 
+
+1. opening a file
+
+f1 = open("abc.txt")    --> for opening a file 
+
+modes of file :
+
+'r' - means open a file in read mode 
+
+'w' - means open a file in write mode .
+      if file does not exist it will create a new file.
+    overites existing file.
+
+'x' - means open a file for exclusive creation . 
+      if file already exists.
+
+'a' - means open a file in appending mode  
+        means whatever we will write it will append in existing file.
+
+'b' - open in binary mode means img jpg files.
+
+
+trash file = hi i am sufiyan
+f = open('trash.txt')
+f.read(6)  --> output - hi i a 
+f.read(9)  --> output - m sufiyan    
+
+f.tell() means it give the location of the pointer
+f.tell()  --> output - 11
+
+f.seek()  -->  we can point our pointer on whatever point we want 
+                using .seek() .
+
+
+if we want to access line by line 
+f.seek(0) - it will point the pointer to zero th position
+for line in f:
+    print(line)  --> it will print whole txt as it is
+
+
+readline -- it reads only the first line by default . 
+            means it reads one line at a time.
+f.readline()
+
+
+readlines -- it reads line multiple times in the form of list.
+
+----------------------------------------------------------------------------------------------------------------
+----------------------------------------------------------------------------------------------------------------
+
+
+                    b . map()  & filter() 
+
+map(): 
+       this function iterates every elements one by one
+
+
+filter():
+         this function will iterate the elements in the list and give out on the basis of true and false
+ if the condition gets false it wont give output , so it give only the out which satisfies the condition
+
+----------------------------------------------------------------------------------------------------------------------
+----------------------------------------------------------------------------------------------------------------------
+ 
+                    c . lambda()
+
+lambda function is generally used with filter() map() sorted()  functions.
+
+----------------------------------------------------------------------------------------------------------------------
+----------------------------------------------------------------------------------------------------------------------
+
+
+                    d . list comprehension
+
+List comprehension is used to create lists in a shorter and cleaner way.
+
+It helps us write multiple lines of code in a single line, making the code more readable and concise.
+
+Syntax:
+variable_name = [expression for item in iterable if condition]
+
+expression    → kya operation perform karna hai
+item          → kis element par operation karna hai
+iterable      → data kaha se aa raha hai
+condition     → optional condition
+
+
+
+Example: Print cube of every even number from 0 to 10
+
+Using for loop
+
+cube = []
+for i in range(10 + 1):
+    if i % 2 == 0:
+        cube.append(i ** 3)
+print(f"Using for loop: {cube}")
+
+
+Using list comprehension
+
+cube = [i ** 3 for i in range(10 + 1) if i % 2 == 0]
+print(f"Using list comprehension: {cube}")
+
+Output
+[0, 8, 64, 216, 512, 1000]
+
+Advantages of List Comprehension:
+
+        Code becomes shorter
+        Improves readability
+        Faster than traditional loops in many cases
+        Reduces unnecessary lines of code

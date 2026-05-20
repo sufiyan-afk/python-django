@@ -1,0 +1,122 @@
+<!-- Tables in HTML
+
+the tables tag in html is used to define tables , 
+ which are used to format and display tubular data.
+
+    <tr></tr> tag is used to display table row.
+    <td></td> tag is used to display table data.
+    <th></th> tag is used to display table headers.
+
+we can define as many table rows as we want . to add a caption to the table ,  we use <caption></caption> tag inside table.
+
+
+                attributes of table in HTML
+
+    1. colspan attribute:
+            this attribute is used to create cells spanning multiple columns.
+
+ -->
+
+
+ <!DOCTYPE html>
+ <html lang="en">
+ <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+    *{
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: Arial, sans-serif;
+    }
+
+    body{
+        background-color: #f4f4f4;
+        padding: 40px;
+    }
+
+    h1{
+        text-align: center;
+        margin-bottom: 25px;
+        color: #e63946;
+    }
+
+    table{
+        width: 80%;
+        margin: auto;
+        border-collapse: collapse;
+        background-color: white;
+        box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+        border-radius: 10px;
+        overflow: hidden;
+    }
+
+    thead{
+        background-color: #e63946;
+        color: white;
+    }
+
+    th, td{
+        padding: 15px;
+        text-align: center;
+        border-bottom: 1px solid #ddd;
+    }
+
+    tbody tr:hover{
+        background-color: #ffe5e5;
+        transition: 0.3s;
+    }
+
+    th{
+        font-size: 18px;
+        text-transform: uppercase;
+    }
+
+    td{
+        font-size: 16px;
+    }
+</style>
+ </head>
+ <body>
+    <h1>Tables in HTML</h1>
+    <table>
+        <!-- head of the table -->
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Role</th>
+                <th>salary</th>
+            </tr>
+        </thead>
+        <!-- body of the table -->
+        <tbody>
+            <tr>
+                <td>Sufiyan</td>
+                <td>software developer</td>
+                <td>50000$</td>
+            </tr>
+
+            <tr>
+                <td>Kaif</td>
+                <td>python developer</td>
+                <td>1000$</td>
+            </tr>
+
+            <tr>
+                <td>mohit</td>
+                <td>AI engineer</td>
+                <td>10000$</td>
+            </tr>
+
+            <tr>
+                <td>mithlesh</td>
+                <td> backend developer</td>
+                <td> 10000$</td>
+            </tr>
+        </tbody>
+    </table>
+ </body>
+ </html>

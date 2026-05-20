@@ -42,11 +42,22 @@
 #         print("invalid option")
 
 
-fruits = ['Apple','Banana','mango']
+# fruits = ['Apple','Banana','mango']
 
-for fruit in fruits:
-    if fruit == 'Banana':
-        continue
-    print(fruit)
+# for fruit in fruits:
+#     if fruit == 'Banana':
+#         continue
+#     print(fruit)
 
-    
+
+
+# for i in range(4):
+#     x = int(input("enter a number 1 to 100 : "))
+#     if x > 1 and x < 100:
+#         break
+#     else:
+#         print("invalid number: ")
+
+# number = map(find_number,)
+        
+

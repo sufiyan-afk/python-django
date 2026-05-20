@@ -1,4 +1,4 @@
-"""
+
 # in the given list find index of 5 , and check it.
 nums = [1,2,3,4,5,6]
 target = 5
@@ -13,7 +13,8 @@ if found == True:
     print("found")
 else:
     print("not found")
-"""
+
+
 
 
 
@@ -30,6 +31,9 @@ print(min_value)
 
 
 
+
+
+
 # find index of minimun number from the list without using min() function
 
 lst = [4,7,1,9,3]
@@ -42,4 +46,10 @@ for i , n in enumerate(lst):
         min_index = i
 
 print(f"minimum value and its index = {min_value} = [{min_index}]")
+
+
+
+
+
+
     
