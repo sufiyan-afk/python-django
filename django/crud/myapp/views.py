@@ -22,3 +22,19 @@ def delete_students(request):
     student = Student.objects.get(id = id)
     student.delete()
     return redirect("display")
+
+def edit_students(request):
+    id = request.GET.get('id')
+    students = Student.objects.get(id = id)
+    if request.method == 'POST':
+        data = request.POST
+        name = data.get("name")
+        email = data.get("email")
+        age = data.get("age")
+        students.name = name
+        students.email = email
+        students.age = age
+        students.save()
+        return render(request , "update.html",{'msg':'update success !!'})
+    
+    return render(request, "update.html" ,{'students':students})
