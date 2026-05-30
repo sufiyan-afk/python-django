@@ -1,0 +1,255 @@
+{% extends 'accounts/base.html' %}
+{% block title %}Dashboard — MyApp{% endblock %}
+
+{% block extra_css %}
+<style>
+  .dashboard-wrap {
+    max-width: 900px;
+    margin: 3rem auto;
+    padding: 0 1.5rem;
+    animation: fadeUp 0.4s ease;
+  }
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(16px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  .greeting-card {
+    background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+    border: 1px solid rgba(108,99,255,0.3);
+    border-radius: 20px;
+    padding: 2.5rem;
+    margin-bottom: 2rem;
+    position: relative;
+    overflow: hidden;
+  }
+  .greeting-card::before {
+    content: '';
+    position: absolute;
+    width: 300px; height: 300px;
+    background: var(--accent);
+    border-radius: 50%;
+    top: -100px; right: -80px;
+    opacity: 0.08;
+    filter: blur(60px);
+  }
+  .greeting-tag {
+    display: inline-block;
+    background: rgba(108,99,255,0.15);
+    border: 1px solid rgba(108,99,255,0.3);
+    color: var(--accent);
+    font-size: 0.75rem;
+    font-weight: 600;
+    padding: 0.3rem 0.75rem;
+    border-radius: 20px;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    margin-bottom: 1rem;
+  }
+  .greeting-card h1 {
+    font-family: 'Syne', sans-serif;
+    font-weight: 800;
+    font-size: 2rem;
+    margin-bottom: 0.5rem;
+  }
+  .greeting-card h1 span { color: var(--accent); }
+  .greeting-card p { color: var(--muted); font-size: 0.95rem; line-height: 1.6; }
+
+  .info-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1rem;
+    margin-bottom: 2rem;
+  }
+  .info-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 1.5rem;
+    transition: border-color 0.2s, transform 0.2s;
+  }
+  .info-card:hover {
+    border-color: rgba(108,99,255,0.4);
+    transform: translateY(-2px);
+  }
+  .info-card .icon { font-size: 1.5rem; margin-bottom: 0.75rem; }
+  .info-card .label {
+    font-size: 0.78rem;
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-bottom: 0.25rem;
+  }
+  .info-card .value {
+    font-family: 'Syne', sans-serif;
+    font-weight: 700;
+    font-size: 1rem;
+    color: var(--text);
+  }
+  .info-card .value.accent  { color: var(--accent); }
+  .info-card .value.success { color: var(--success); }
+
+  .explainer {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 2rem;
+    margin-bottom: 2rem;
+  }
+  .explainer h2 {
+    font-family: 'Syne', sans-serif;
+    font-weight: 700;
+    font-size: 1.1rem;
+    margin-bottom: 1.25rem;
+  }
+  .explainer h2 span {
+    color: var(--muted);
+    font-weight: 400;
+    font-size: 0.85rem;
+    margin-left: 0.5rem;
+  }
+
+  .flow-steps { display: flex; flex-direction: column; gap: 0.75rem; }
+  .flow-step {
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+    padding: 0.85rem 1rem;
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+  }
+  .step-num {
+    background: rgba(108,99,255,0.15);
+    color: var(--accent);
+    font-family: 'Syne', sans-serif;
+    font-weight: 800;
+    font-size: 0.8rem;
+    width: 28px; height: 28px;
+    border-radius: 8px;
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+  }
+  .step-content .step-title { font-weight: 600; font-size: 0.9rem; margin-bottom: 0.15rem; }
+  .step-content .step-desc  { font-size: 0.82rem; color: var(--muted); line-height: 1.5; }
+  .step-content code {
+    background: rgba(108,99,255,0.1);
+    color: var(--accent);
+    padding: 0.1rem 0.4rem;
+    border-radius: 4px;
+    font-size: 0.8rem;
+    font-family: 'Courier New', monospace;
+  }
+
+  .logout-section { display: flex; justify-content: flex-end; margin-top: 1rem; }
+  .btn-logout {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: rgba(248,113,113,0.1);
+    border: 1px solid rgba(248,113,113,0.3);
+    color: var(--error);
+    text-decoration: none;
+    padding: 0.65rem 1.25rem;
+    border-radius: 8px;
+    font-size: 0.9rem;
+    font-weight: 500;
+    transition: background 0.2s, transform 0.15s;
+  }
+  .btn-logout:hover { background: rgba(248,113,113,0.18); transform: translateY(-1px); }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="dashboard-wrap">
+
+  <div class="greeting-card">
+    <div class="greeting-tag">🔒 Protected Page</div>
+    <h1>Hello, <span>{{ request.user.username }}</span>!</h1>
+    <p>
+      Tum yahan sirf isliye ho kyunki tum logged in ho.<br>
+      Agar koi bina login ke is URL pe aaya → Django automatically login page pe bhej deta hai.
+      That's <strong>@login_required</strong> magic! ✨
+    </p>
+  </div>
+
+  <div class="info-grid">
+    <div class="info-card">
+      <div class="icon">👤</div>
+      <div class="label">Username</div>
+      <div class="value accent">{{ request.user.username }}</div>
+    </div>
+    <div class="info-card">
+      <div class="icon">📧</div>
+      <div class="label">Email</div>
+      <div class="value">{{ request.user.email|default:"Not set" }}</div>
+    </div>
+    <div class="info-card">
+      <div class="icon">📅</div>
+      <div class="label">Joined On</div>
+      <div class="value">{{ request.user.date_joined|date:"d M Y" }}</div>
+    </div>
+    <div class="info-card">
+      <div class="icon">✅</div>
+      <div class="label">Status</div>
+      <div class="value success">Authenticated</div>
+    </div>
+  </div>
+
+  <div class="explainer">
+    <h2>🔑 Behind the Scenes <span>— Kya hua jab tune login kiya?</span></h2>
+    <div class="flow-steps">
+
+      <div class="flow-step">
+        <div class="step-num">1</div>
+        <div class="step-content">
+          <div class="step-title">Form Submit</div>
+          <div class="step-desc">
+            Login form ne POST request bheji → Django ne
+            <code>request.POST['username']</code> aur <code>request.POST['password']</code> pakde
+          </div>
+        </div>
+      </div>
+
+      <div class="flow-step">
+        <div class="step-num">2</div>
+        <div class="step-content">
+          <div class="step-title">Password Verify</div>
+          <div class="step-desc">
+            <code>authenticate()</code> ne DB mein stored hashed password se compare kiya.
+            Sahi tha toh User object return kiya.
+          </div>
+        </div>
+      </div>
+
+      <div class="flow-step">
+        <div class="step-num">3</div>
+        <div class="step-content">
+          <div class="step-title">Session Bani</div>
+          <div class="step-desc">
+            <code>login(request, user)</code> ne ek unique Session ID banaya,
+            DB mein save kiya, aur browser ko cookie diya.
+          </div>
+        </div>
+      </div>
+
+      <div class="flow-step">
+        <div class="step-num">4</div>
+        <div class="step-content">
+          <div class="step-title">Protected Page Access</div>
+          <div class="step-desc">
+            Har request pe browser wo cookie bhejta hai → <code>@login_required</code>
+            check karta hai → valid hai toh page milta hai, nahi toh login pe redirect.
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="logout-section">
+    <a href="{% url 'logout' %}" class="btn-logout">🚪 Logout</a>
+  </div>
+
+</div>
+{% endblock %}
