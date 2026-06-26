@@ -26,7 +26,6 @@ def update(request):
         books.author = request.POST.get('author')
         books.genre = request.POST.get('genre')
         books.price = request.POST.get('price')
-
         books.save()
         return redirect('display')
     return render(request,'update.html',{'books':books})

@@ -21,7 +21,7 @@ def register_view(request):
         user = User.objects.create_user(username = username , password = password , email = email)
         messages.error(request,"Account created ! please login.")
         return redirect('login')
-    return render(request,"accounts/register.html")
+    return render(request,"register.html")
 
 
 

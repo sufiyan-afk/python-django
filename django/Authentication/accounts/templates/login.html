@@ -157,7 +157,7 @@
       <p>Login to access your dashboard</p>
     </div>
 
-    <form method="POST" action="">
+    <form method="POST" action="{% url 'login' %}">
       {% csrf_token %}
 
       <div class="form-group">

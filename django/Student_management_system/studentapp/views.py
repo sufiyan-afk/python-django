@@ -32,4 +32,4 @@ def update(request):
 def delete(request):
     id= request.GET.get('id')
     Student.objects.get(id=id).delete()
-    return render(request , "index.html")
+    return redirect("display")
